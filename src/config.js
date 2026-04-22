@@ -26,7 +26,7 @@ export const showLabelConfig = {
                 "miscError",
                 "scram errors"
             ],
-            color: "danger" // class to give bootstrap color
+            color: "danger" 
         },
         {
             groupFields: ["known_failed"],
@@ -280,6 +280,22 @@ export const config = {
             getUrl: function (ib) {
                 return "https://cmssdt.cern.ch/SDT/jenkins-artifacts/ib-run-crab/" + getCurrentIbTag(ib);
             },
+            ifPassed: function(ib, result) {
+                return {
+                    name: this.name,
+                    glyphicon: "glyphicon-ok",
+                    url: this.getUrl(ib),
+                    labelColor: "green"
+                };
+            },
+            ifFound: function(ib, result) {
+                return {
+                    name: this.name,
+                    glyphicon: "glyphicon-ok",
+                    url: this.getUrl(ib),
+                    labelColor: "green"
+                };
+            },
             ifError: function(ib, result) {
                 return {
                     name: this.name,
@@ -324,6 +340,8 @@ export const config = {
             //add_igprof_tests_link
             key: "vtune",
             name: "Vtune",
+            target: "_blank",
+            rel: "noopener noreferrer",
             getUrl: function (ib, result) {
                 return "https://cmssdt.cern.ch/vtune/ui/" + getCurrentIbTag(ib) + "/" + result.data + '" rel="noopener noreferrer" target="_blank"';
             }
@@ -488,8 +506,7 @@ export const config = {
                 if ( _.isEmpty(result)) {
                     return STATUS_ENUM.not_found
                 }
-                // the assumption here is that result is a list of object which can only have 1 element
-                // (originally this field was used in the table)
+
                 let result_element = result[0];
                 if (result_element.passed === STATUS_ENUM.passed){
                     return STATUS_ENUM.passed;
@@ -499,14 +516,23 @@ export const config = {
                     case "danger" :
                         return STATUS_ENUM.error;
                     default:
-                        return labelelType.colorType // should be success | warning
+                        return labelelType.colorType
                 }
+            },
+            ifPassed: function(ib, result) {
+                return {
+                    name: this.name,
+                    glyphicon: "glyphicon-ok",
+                    url: this.getUrl(ib),
+                    labelColor: "green"
+                };
             },
             ifFound: function(ib, result) {
                 return {
                     name: this.name,
                     glyphicon: "glyphicon-ok",
                     url:  this.getUrl(ib),
+                    labelColor: "green"
                 };
             },
             ifError: function(ib, result) {
@@ -537,8 +563,7 @@ export const config = {
                 if ( _.isEmpty(result)) {
                     return STATUS_ENUM.not_found
                 }
-                // the assumption here is that result is a list of object which can only have 1 element
-                // (originally this field was used in the table)
+
                 let result_element = result[0];
                 if (result_element.passed === STATUS_ENUM.passed){
                     return STATUS_ENUM.passed;
@@ -551,11 +576,20 @@ export const config = {
                         return labelelType.colorType // should be success | warning
                 }
             },
+            ifPassed: function(ib, result) {
+                return {
+                    name: this.name,
+                    glyphicon: "glyphicon-ok",
+                    url: this.getUrl(ib),
+                    labelColor: "green"
+                };
+            },
             ifFound: function(ib, result) {
                 return {
                     name: this.name,
                     glyphicon: "glyphicon-ok",
                     url:  this.getUrl(ib),
+                    labelColor: "green"
                 };
             },
             ifError: function(ib, result) {
@@ -585,8 +619,7 @@ export const config = {
                 if ( _.isEmpty(result)) {
                     return STATUS_ENUM.not_found
                 }
-                // the assumption here is that result is a list of object which can only have 1 element
-                // (originally this field was used in the table)
+
                 let result_element = result[0];
                 if (result_element.passed === STATUS_ENUM.passed){
                     return STATUS_ENUM.passed;
@@ -599,11 +632,20 @@ export const config = {
                         return labelelType.colorType // should be success | warning
                 }
             },
+            ifPassed: function(ib, result) {
+                return {
+                    name: this.name,
+                    glyphicon: "glyphicon-ok",
+                    url: this.getUrl(ib),
+                    labelColor: "green"
+                };
+            },
             ifFound: function(ib, result) {
                 return {
                     name: this.name,
                     glyphicon: "glyphicon-ok",
                     url:  this.getUrl(ib),
+                    labelColor: "green"
                 };
             },
             ifError: function(ib, result) {
